@@ -29,7 +29,7 @@ public class UnitOfMeasureRepositoryIT {
     public void findByDescription() throws Exception {
         Optional<UnitOfMeasure> uomOptional = unitOfMeasureRepository.findByDescription("Teaspoon");
 
-        assertEquals("Teaspoon", uomOptional.get().getDescription());
+        assertEquals("Cup", uomOptional.get().getDescription());
     }
 
     @Test
