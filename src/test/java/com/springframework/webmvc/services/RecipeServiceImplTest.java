@@ -1,5 +1,7 @@
 package com.springframework.webmvc.services;
 
+import com.springframework.webmvc.converters.RecipeCommandToRecipe;
+import com.springframework.webmvc.converters.RecipeToRecipeCommand;
 import com.springframework.webmvc.domain.Recipe;
 import com.springframework.webmvc.repositories.RecipeRepository;
 import org.junit.Before;
@@ -22,10 +24,16 @@ public class RecipeServiceImplTest {
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
+
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
+
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test
@@ -45,7 +53,7 @@ public class RecipeServiceImplTest {
     }
 
     @Test
-    public void getRecipes() throws Exception {
+    public void getRecipesTest() throws Exception {
 
         Recipe recipe = new Recipe();
         Set<Recipe> recipesData = asSet(recipe);
@@ -57,4 +65,15 @@ public class RecipeServiceImplTest {
         verify(recipeRepository, times(1)).findAll();
     }
 
+    @Test
+    public void testDeleteById() throws Exception {
+        //given
+        Long idToDelete = 2L;
+
+        //when
+        recipeService.deleteById(idToDelete);
+
+        //then
+        verify(recipeRepository, times(1)).deleteById(anyLong());
+    }
 }
