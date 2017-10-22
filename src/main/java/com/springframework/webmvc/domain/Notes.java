@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @Data
 @EqualsAndHashCode(exclude = {"recipe"})
+@ToString(exclude = {"recipe"})
 @Entity
 public class Notes {
 
@@ -13,7 +14,7 @@ public class Notes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Recipe recipe;
 
     @Lob
