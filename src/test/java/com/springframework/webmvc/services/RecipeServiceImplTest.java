@@ -3,6 +3,7 @@ package com.springframework.webmvc.services;
 import com.springframework.webmvc.converters.RecipeCommandToRecipe;
 import com.springframework.webmvc.converters.RecipeToRecipeCommand;
 import com.springframework.webmvc.domain.Recipe;
+import com.springframework.webmvc.exceptions.NotFoundException;
 import com.springframework.webmvc.repositories.RecipeRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -50,6 +51,17 @@ public class RecipeServiceImplTest {
         assertNotNull("Null recipe returned", recipeReturned);
         verify(recipeRepository, times(1)).findById(anyLong());
         verify(recipeRepository, never()).findAll();
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void getRecipeByIdTestNotFound() throws Exception {
+        Optional<Recipe> recipeOptional = Optional.empty();
+
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        recipeService.findById(1L);
+
+        //should go boom
     }
 
     @Test
