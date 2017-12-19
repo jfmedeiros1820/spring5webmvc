@@ -5,14 +5,12 @@ import com.springframework.webmvc.domain.UnitOfMeasure;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class UnitOfMeasureCommandToUnitOfMeasureTest {
 
     public static final String DESCRIPTION = "description";
-    public static final Long LONG_VALUE = new Long(1L);
+    public static final String LONG_VALUE = "1L";
 
     UnitOfMeasureCommandToUnitOfMeasure converter;
 

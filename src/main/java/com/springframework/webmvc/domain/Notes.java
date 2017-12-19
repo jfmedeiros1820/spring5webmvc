@@ -1,23 +1,16 @@
 package com.springframework.webmvc.domain;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
-
-@Data
-@EqualsAndHashCode(exclude = {"recipe"})
-@ToString(exclude = {"recipe"})
-@Entity
+@Getter
+@Setter
 public class Notes {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
-    @OneToOne(fetch = FetchType.LAZY)
     private Recipe recipe;
 
-    @Lob
     private String recipeNotes;
 
 }

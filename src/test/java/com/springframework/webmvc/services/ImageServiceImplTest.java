@@ -13,10 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
 
 public class ImageServiceImplTest {
 
@@ -35,7 +33,7 @@ public class ImageServiceImplTest {
     @Test
     public void saveImageFile() throws Exception {
         //given
-        Long id = 1L;
+        String id = "1L";
         MultipartFile multipartFile = new MockMultipartFile("imagefile", "testing.txt", "text/plain",
                 "Spring Framework Guru".getBytes());
 
@@ -43,7 +41,7 @@ public class ImageServiceImplTest {
         recipe.setId(id);
         Optional<Recipe> recipeOptional = Optional.of(recipe);
 
-        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+        when(recipeRepository.findById(anyString())).thenReturn(recipeOptional);
 
         ArgumentCaptor<Recipe> argumentCaptor = ArgumentCaptor.forClass(Recipe.class);
 

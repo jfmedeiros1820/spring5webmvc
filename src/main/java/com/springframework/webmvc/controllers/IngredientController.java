@@ -30,7 +30,7 @@ public class IngredientController {
     }
 
     @GetMapping("/recipe/{recipeId}/ingredients")
-    public String listIngredients(@PathVariable Long recipeId, Model model){
+    public String listIngredients(@PathVariable String recipeId, Model model){
         log.debug("Getting ingredient list for recipe id: " + recipeId);
 
         // use command object to avoid lazy load errors in Thymeleaf.
@@ -40,14 +40,14 @@ public class IngredientController {
     }
 
     @GetMapping("recipe/{recipeId}/ingredient/{id}/show")
-    public String showRecipeIngredient(@PathVariable Long recipeId,
-                                       @PathVariable Long id, Model model){
+    public String showRecipeIngredient(@PathVariable String recipeId,
+                                       @PathVariable String id, Model model){
         model.addAttribute("ingredient", ingredientService.findByRecipeIdAndIngredientId(recipeId, id));
         return "recipe/ingredient/show";
     }
 
     @GetMapping("recipe/{recipeId}/ingredient/new")
-    public String newRecipe(@PathVariable Long recipeId, Model model) {
+    public String newRecipe(@PathVariable String recipeId, Model model) {
         RecipeCommand recipeCommand = recipeService.findCommandById(recipeId);
 
         IngredientCommand ingredientCommand = new IngredientCommand();
@@ -60,8 +60,8 @@ public class IngredientController {
     }
 
     @GetMapping("recipe/{recipeId}/ingredient/{id}/update")
-    public String updateRecipeIngredient(@PathVariable Long recipeId,
-                                         @PathVariable Long id, Model model){
+    public String updateRecipeIngredient(@PathVariable String recipeId,
+                                         @PathVariable String id, Model model){
         model.addAttribute("ingredient", ingredientService.findByRecipeIdAndIngredientId(recipeId, id));
 
         model.addAttribute("uomList", unitOfMeasureService.listAllUoms());
@@ -80,8 +80,8 @@ public class IngredientController {
     }
 
     @GetMapping("recipe/{recipeId}/ingredient/{id}/delete")
-    public String deleteIngredient(@PathVariable Long recipeId,
-                                   @PathVariable Long id){
+    public String deleteIngredient(@PathVariable String recipeId,
+                                   @PathVariable String id){
 
         log.debug("deleting ingredient id:" + id);
         ingredientService.deleteById(recipeId, id);
