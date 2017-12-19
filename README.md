@@ -2,6 +2,8 @@
 
 [![CircleCI](https://circleci.com/gh/jfmedeiros1820/spring5webmvc.svg?style=svg)](https://circleci.com/gh/jfmedeiros1820/spring5webmvc)
 
+[![codecov](https://codecov.io/gh/jfmedeiros1820/spring5webmvc/branch/master/graph/badge.svg)](https://codecov.io/gh/jfmedeiros1820/spring5webmvc)
+
 ## Creating docker image
 
 ```
